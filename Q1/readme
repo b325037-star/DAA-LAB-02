@@ -1,0 +1,129 @@
+# Q1 - Experimental Time Complexity Analysis
+
+## Aim
+
+To experimentally determine the worst-case time complexity of different
+operations on different data structure representations.
+
+The following representations are studied:
+
+1. Unsorted Array
+2. Sorted Array
+3. Singly Linked List - Unsorted
+4. Singly Linked List - Sorted
+5. Doubly Linked List - Unsorted
+6. Doubly Linked List - Sorted
+
+The operations studied are:
+
+- Search
+- Insert
+- Delete
+- Maximum
+- Minimum
+- Predecessor
+- Successor
+
+---
+
+## Experimental Method
+
+The program tests multiple input sizes from n = 64 to n = 65536.
+
+Instead of using clock time, the program counts the dominant operations
+performed by each algorithm. This avoids noise caused by the system
+timer and gives a more consistent measurement.
+
+The measured growth is compared with:
+
+- O(1) - Constant
+- O(log n) - Logarithmic
+- O(n) - Linear
+
+---
+
+## Theoretical Worst-Case Complexity
+
+| Representation | Search | Insert | Delete | Maximum | Minimum | Predecessor | Successor |
+|----------------|--------|--------|--------|---------|---------|-------------|-----------|
+| Unsorted Array | O(n) | O(1) | O(1) | O(n) | O(n) | O(n) | O(n) |
+| Sorted Array | O(log n) | O(n) | O(n) | O(1) | O(1) | O(1) | O(1) |
+| Singly Linked Unsorted | O(n) | O(1) | O(n) | O(n) | O(n) | O(n) | O(n) |
+| Singly Linked Sorted | O(n) | O(n) | O(n) | O(1) | O(1) | O(n) | O(1) |
+| Doubly Linked Unsorted | O(n) | O(1) | O(1) | O(n) | O(n) | O(n) | O(n) |
+| Doubly Linked Sorted | O(n) | O(n) | O(1) | O(1) | O(1) | O(1) | O(1) |
+
+---
+
+## Program
+
+The C program:
+
+- Creates the required data structures.
+- Generates different input sizes.
+- Performs the required operations.
+- Counts the dominant operations.
+- Compares the experimental growth with the theoretical complexity.
+- Generates experimental data for plotting.
+- Reports the experimentally inferred complexity.
+
+---
+
+## Experimental Data
+
+The program generates the file:
+
+q1_experimental_data.dat
+
+This file contains the measured dominant operation counts for the
+different input sizes and operations.
+
+---
+
+## Graph
+
+The graph contains six panels, one for each data structure
+representation.
+
+Each panel shows the growth of the seven operations:
+
+- Search
+- Insert
+- Delete
+- Maximum
+- Minimum
+- Predecessor
+- Successor
+
+The graph is used to compare the experimental growth with the expected
+complexity classes O(1), O(log n), and O(n).
+
+---
+
+## Observation
+
+The experimental results follow the expected theoretical growth
+patterns.
+
+Operations classified as O(1) remain approximately constant as n
+increases.
+
+Operations classified as O(log n) grow slowly with n.
+
+Operations classified as O(n) increase approximately linearly with n.
+
+---
+
+## Conclusion
+
+The experiment demonstrates that the worst-case time complexity of an
+operation depends on both the operation and the data structure
+representation.
+
+The experimental results are consistent with the theoretical
+complexity table.
+
+The experiment also shows that choosing an appropriate data structure
+can significantly affect the efficiency of an operation.
+
+---
