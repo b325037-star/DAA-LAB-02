@@ -1,97 +1,152 @@
-Q3. Merging k Sorted Arrays
+# Q3 - Merging k Sorted Arrays
 
-Suppose there are k sorted arrays, each having n elements.
+## Aim
 
-Total elements:
+To merge k sorted arrays, each containing n elements, into one single
+sorted array containing kn elements.
+
+Two different methods are implemented and compared.
+
+## Problem Statement
+
+We are given k sorted arrays, each having n elements.
+
+The total number of elements is:
 
 kn
-(a) Method 1 — Merge One by One
 
-The first two arrays are merged, then the result is merged with the third, then with the fourth, and so on.
+We need to combine all the arrays into one sorted array.
 
-Cost
-Merge array 1 + array 2 → 2n elements → O(n)
-Merge result + array 3 → 3n elements → O(n)
-Merge result + array 4 → 4n elements → O(n)
-...
-Final merge → kn elements
+---
 
-Therefore:
+## Method 1 - Sequential Merging
 
-T(n,k)=n+2n+3n+⋯+(k−1)n
-T(n,k)=n(1+2+3+⋯+(k−1))
+In Method 1, the arrays are merged one by one.
 
-Using:
+First, the first two arrays are merged. Then the resulting array is
+merged with the third array, then with the fourth array, and so on.
 
-1+2+⋯+(k−1)=
+For k arrays, the merging work is approximately:
 
-k(k−1)/2
-	​
-Therefore:
+2n + 3n + 4n + ... + kn
 
-T(n,k)=
+Therefore,
 
-nk(k−1)/2
-	​
+T(n,k) = Theta(n * k^2)
 
+### Worst-case Running Time
 
-So,
+Theta(n * k^2)
 
-T(n,k)=Θ(nk^2)
-	​
+---
 
-Method 1 answer:
-Θ(nk^2)
-	​
+## Method 2 - Pairwise Merging
 
-(b) Method 2 — Pairwise Merging
+In Method 2, the arrays are merged in pairs.
 
-Here, the arrays are merged in pairs.
+For example, if k = 8:
 
-For example, if:
+8 arrays of n elements
+        |
+        v
+4 arrays of 2n elements
+        |
+        v
+2 arrays of 4n elements
+        |
+        v
+1 array of 8n elements
 
-k=8
+At every level, all kn elements are processed once.
 
-Initially:
+The number of levels is:
 
-8 arrays of n
-       ↓
-4 arrays of 2n
-       ↓
-2 arrays of 4n
-       ↓
-1 array of 8n
+log2(k)
 
-There are:
+Therefore,
 
-log_2 k
+T(n,k) = kn log2(k)
 
-levels.
+### Worst-case Running Time
 
-At each level, all kn elements are processed once.
+Theta(n * k * log k)
 
-Therefore:
+---
 
-T(n,k)=knlog_2 k
+## Comparison
 
-So:
+| Method | Approach | Worst-case Running Time |
+|--------|----------|-------------------------|
+| Method 1 | Merge arrays one by one | Theta(n * k^2) |
+| Method 2 | Merge arrays pairwise | Theta(n * k * log k) |
 
-T(n,k)=Θ(nklogk)
-	​
+---
 
-Method 2 answer:
-Θ(nklogk)
-	​
+## C Program
 
-Final Complexity Table
-Method	Approach	Worst-case running time
-Method 1	Merge arrays one by one	Θ(nk²)
-Method 2	Merge arrays pairwise	Θ(nk log k)
-Which is better?
+The C program implements both methods.
 
-For large k:
+The program:
 
-nklogk<nk
-2
+- Takes n as the number of elements in each array.
+- Takes k as the number of sorted arrays.
+- Creates sorted arrays.
+- Merges the arrays using Method 1.
+- Merges the arrays using Method 2.
+- Counts the number of comparisons.
+- Displays the comparison count for both methods.
+- Displays the theoretical time complexity.
 
-Therefore, Method 2 is more efficient.
+---
+
+## Sample Input
+
+Enter number of elements in each array: 100
+Enter number of arrays: 8
+
+## Sample Output
+
+====================================
+          RESULTS
+====================================
+n = 100
+k = 8
+
+Method 1 comparisons = ...
+Method 2 comparisons = ...
+
+Theoretical complexity:
+Method 1 = Theta(n * k^2)
+Method 2 = Theta(n * k * log k)
+
+Method 2 is more efficient for large k.
+
+The exact number of comparisons depends on the implementation and
+input.
+
+---
+## Experimental Observation
+
+As the value of k increases:
+
+- Method 1 grows approximately as k^2.
+- Method 2 grows approximately as k log k.
+
+Therefore, Method 2 grows more slowly than Method 1.
+
+---
+
+## Conclusion
+
+Method 1 has a worst-case running time of:
+
+Theta(n * k^2)
+
+Method 2 has a worst-case running time of:
+
+Theta(n * k * log k)
+
+Therefore, Method 2 is more efficient than Method 1, especially when
+the number of sorted arrays k is large.
+
+The experiment using the C program supports the theoretical analysis.
